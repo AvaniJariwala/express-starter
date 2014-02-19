@@ -143,7 +143,7 @@ $(function() {
 
   $('#equals').click(function() {
     // FIXME
-    var res = eval(outputText);
+    var res = eval('parseFloat(eval(outputText))');
     $('#output').text(res);
   });
 
