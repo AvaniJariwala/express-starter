@@ -137,13 +137,13 @@ $(function() {
     var outputText = $('#output').text();
     var outputNum = parseFloat(eval(outputText));
     // FIXME
-    var newNum = Math.sqrt(outputNum);
+    var newNum = Math.square(outputNum);
     $('#output').text(newNum);
   });
 
   $('#equals').click(function() {
     // FIXME
-    var res = eval('4*10+7');
+    var res = eval(outputText);
     $('#output').text(res);
   });
 
