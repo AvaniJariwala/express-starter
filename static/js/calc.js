@@ -129,7 +129,7 @@ $(function() {
   $('#sqrt').click(function() {
     var outputText = $('#output').text();
     var outputNum = parseFloat(eval(outputText));
-    var newNum = Math.sqrt(outputNum);
+    var newNum = (outputNum)*(outputNum);
     $('#output').text(newNum);
   });
 
@@ -137,7 +137,7 @@ $(function() {
     var outputText = $('#output').text();
     var outputNum = parseFloat(eval(outputText));
     // FIXME
-    var newNum = Math.square(outputNum);
+    var newNum = Math.sqrt(outputNum);
     $('#output').text(newNum);
   });
 
