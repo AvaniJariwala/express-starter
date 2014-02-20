@@ -144,7 +144,7 @@ $(function() {
   $('#equals').click(function() {
     // FIXME
     var outputText = $('#output').text();
-    var res = eval('outputText');
+    var res = eval(outputText);
     $('#output').text(res);
   });
 
