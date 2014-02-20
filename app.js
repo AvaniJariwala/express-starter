@@ -22,8 +22,8 @@ app.get('/', function(req, res) {
   res.render('index.html', { });
 });
 
-app.get('/test', function(req, res) {
-  res.render('test.html', { });
+app.get('/stuff', function(req, res) {
+  res.render('stuff.html', { });
 });
 
 app.get('/calc', function(req, res) {
