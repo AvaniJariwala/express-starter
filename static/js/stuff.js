@@ -25,3 +25,6 @@ $('#pink').click(function() {
 
 // Problem 4 (Greet Me) -----------------------------------------------------
 // WRITE CODE HERE
+$('#greet').click(function() {
+ alert('Wassup $('#my_name').val();')
+});
