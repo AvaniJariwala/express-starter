@@ -24,4 +24,9 @@ $('#pink').click(function() {
 
 
 // Problem 4 (Greet Me) -----------------------------------------------------
+$('#greet').click(function() {
+  $('#my_name').val(function(n,c) {
+  	return 'Hi ' + c
+  })
+});
 // WRITE CODE HERE
