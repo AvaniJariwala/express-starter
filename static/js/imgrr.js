@@ -20,3 +20,6 @@ $('.clickable').click(function() {
 
 // Problem 5 (Imgrr) -------------------------------------------------
 // WRITE CODE HERE
+$('.clickable1').click(function() {
+	$("#main_img1").attr('src', "/static/img/"+$(this).attr('src'));
+});
