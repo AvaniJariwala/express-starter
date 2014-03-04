@@ -9,7 +9,7 @@ $('#toggle_img').click(function() {
 // Problem 3 (Swap Em) -----------------------------------------------
 // WRITE CODE HERE
 $('#change_img').click(function() {
-	$('#main_img').attr("src" , "'/static/img/'+$('#new_img_file').val()");
+	$("#main_img").attr('src', "/static/img/"+$("#new_img_file").val());
 });
 
 // Problem 4 (Find the Source) -------------------------------------------------
