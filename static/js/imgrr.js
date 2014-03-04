@@ -1,5 +1,10 @@
 // Problem 2 (Peekaboo) ------------------------------------------------------
 // WRITE CODE HERE
+$('#toggle_img').click(function() {
+	if ($('#toggle_img').text() === "Go Away!") {
+		$('#main_img').hide(); $('#toggle_img').text('Come Back!');
+	} else {$('#main_img').show(); $('#toggle_img').text('Go Away!');}	
+});
 
 // Problem 3 (Swap Em) -----------------------------------------------
 // WRITE CODE HERE
