@@ -15,6 +15,7 @@ $('#change_img').click(function() {
 // Problem 4 (Find the Source) -------------------------------------------------
 $('.clickable').click(function() {
   // WRITE CODE HERE
+  alert("src is: " + $(this).attr('src'));
 });
 
 // Problem 5 (Imgrr) -------------------------------------------------
