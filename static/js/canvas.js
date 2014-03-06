@@ -38,6 +38,27 @@ $(document).ready(function() {
   	context.stroke();
   });
 
+   $('#p6').click(function() {
+   	context.strokeStyle='green';
+   	context.strokeRect(400,50,10,100);
+   	context.strokeStyle='black';
+   });
+
+   $('#p7').click(function() {
+   	context.beginPath();
+   	context.fillStyle='red';
+   	context.arc(300,300,76,0,2*Math.PI);
+   	context.closePath();
+   	context.fill();
+   });
+
+   $('#p8').click(function() {
+   	context.strokeStyle='blue';
+   	context.strokeRect(90,90,90,90);
+   	context.fillStyle='yellow';
+   	context.fillRect(90,90,90,90);
+   });
+
   //
 
 });
