@@ -59,6 +59,21 @@ $(document).ready(function() {
    	context.fillRect(90,90,90,90);
    });
 
+   $('#p9').click(function() {
+    for (var i=0; i<=5; i++) {
+      context.strokeRect (100+(50*i), 100, 50, 50);
+      console.log(i);
+    }
+   });
+
+   $('#p10').click(function() {
+   for (var i=0; i<=100; i++) {
+      context.strokeRect (100+(5*i), 100, 5, 5);
+      console.log(i);
+    } 
+   });
+
+
   //
 
 });
