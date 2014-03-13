@@ -37,6 +37,10 @@ app.get('/imgrr', function(req, res) {
 app.get('/canvas', function(req, res) {
   res.render('canvas.html', { });
 });
+
+app.get('/funcs', function(req, res) {
+	res.render('funcs.html', { });
+});
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
