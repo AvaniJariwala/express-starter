@@ -29,6 +29,37 @@ $(document).ready(function() {
     drawCircle(x + ((radius)/((2)^(.5))), y - ((radius*((3)^(.5)))/(2*((2)^(.5)))), radius, color3);
   };
 
+  var drawTriangle = function(x, y, side, color) {
+    context.beginPath();
+    context.fillStyle=color;
+    context.moveTo(x, y);
+    context.lineTo(x+(2*side), y);
+    context.lineTo(x+(side), y-((3^(.5))*(side/2)));
+    context.lineTo(x, y);
+    context.stroke();
+    context.fill();
+    context.closePath();
+  };
+  
+  var drawTriforce = function(x, y, side, color1, color2, color3) {
+    drawTriangle(x, y, side, color1);
+    drawTriangle(x-side, y+((3^(.5))*(side/2)), side, color2);
+    drawTriangle(x+(side), y+((3^(.5))*(side/2)), side, color3);
+  };
+
+  var drawTripleTriforce = function(x, y, side, color1, color2, color3) {
+    drawTriforce(x, y, side, color1, color1, color1);
+    drawTriforce(x-(2*side), y+(2*((3^(.5))*(side/2))), side, color2, color2, color2);
+    drawTriforce(x+(2*side), y+(2*((3^(.5))*(side/2))), side, color3, color3, color3);
+  };
+
+  var drawSierpinski = function(x, y, side, color1, color2, color3) {
+    drawTripleTriforce(x, y, side, color1, color1, color1);
+    drawTripleTriforce(x-(4*side), y+(4*((3^(.5))*(side/2))), side, color2, color2, color2);
+    drawTripleTriforce(x+(4*side), y+(4*((3^(.5))*(side/2))), side, color3, color3, color3);
+  };
+
+
   // Challenge:
   // Write drawTriangle, drawTriforce, drawTripleTriforce,
   // drawSierpinski functions here
@@ -74,6 +105,22 @@ $(document).ready(function() {
     drawTriplet(300, 10, 50, 'purple', 'blue', 'purple');
     drawTriplet(60, 100, 45, 'orange', 'purple', 'orange');
     drawTriplet(400, 400, 20, 'brown', 'red', 'teal');
+  });
+
+  $('#p9').click(function() {
+    drawTriangle(300,300,100,'red');
+  });
+
+  $('#p10').click(function() {
+    drawTriforce(100, 100, 60, 'blue', 'red', 'orange');
+  });
+
+  $('#p11').click(function() {
+    drawTripleTriforce(200, 300, 40, 'red', 'orange', 'black');
+  });
+
+  $('#p12').click(function() {
+    drawSierpinski(210, 50, 30, 'pink', 'teal', 'brown');
   });
 
 });
