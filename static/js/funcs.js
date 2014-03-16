@@ -23,6 +23,12 @@ $(document).ready(function() {
 
   // Write drawTriplet function here
 
+  var drawTriplet = function(x, y, radius, color1, color2, color3) {
+    drawCircle(x, y, radius, color1);
+    drawCircle(x + ((2*radius)/((2)^(.5))), y, radius, color2);
+    drawCircle(x + ((radius)/((2)^(.5))), y - ((radius*((3)^(.5)))/(2*((2)^(.5)))), radius, color3);
+  };
+
   // Challenge:
   // Write drawTriangle, drawTriforce, drawTripleTriforce,
   // drawSierpinski functions here
@@ -55,5 +61,19 @@ $(document).ready(function() {
   //---------------------------------------------------------------------------
   //Write your code for p5-p11 here
   //
+  $('#p6').click(function() {
+    drawTriplet(200, 300, 50, 'green', 'green', 'green');
+  });
+
+  $('#p7').click(function() {
+    drawTriplet(100, 250, 50, 'blue', 'blue', 'blue');
+  });
+
+  $('#p8').click(function() {
+    drawTriplet(10, 250, 30, 'black', 'pink', 'pink');
+    drawTriplet(300, 10, 50, 'purple', 'blue', 'purple');
+    drawTriplet(60, 100, 45, 'orange', 'purple', 'orange');
+    drawTriplet(400, 400, 20, 'brown', 'red', 'teal');
+  });
 
 });
