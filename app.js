@@ -41,6 +41,15 @@ app.get('/canvas', function(req, res) {
 app.get('/funcs', function(req, res) {
 	res.render('funcs.html', { });
 });
+
+app.get('/ball', function(req, res) {
+	res.render('ball.html', { });
+});
+
+app.get('/chain_reaction', function(req, res) {
+	res.render('chain_reaction.html', { });
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
