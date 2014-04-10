@@ -16,8 +16,6 @@ $(document).ready(function() {
     balls.push(a);
   }
 
-  console.log(balls);
-
   // Run an interation of the game
   var updateGame = function() {
     context.fillStyle='pink';
@@ -57,6 +55,8 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
+    c = {x: x, y: y, radius: 50*Math.random(), vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
+    balls.push(c);
   });
 
   updateGame();
