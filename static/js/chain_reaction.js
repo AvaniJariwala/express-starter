@@ -38,7 +38,6 @@ $(document).ready(function() {
         balls[i].vy = 5;
       }
     }
-    
     for (var c = 0; c < balls.length; c++) {
       context.beginPath();
       context.fillStyle='red';
@@ -56,6 +55,11 @@ $(document).ready(function() {
       context.fill();
     }
     requestAnimationFrame(updateGame);
+    for (var i = 0; i < reactions.length; i++) {
+      if (reactions[i].radius < 30) {
+        reactions[i].radius++;
+      }
+    }
   };
 
   // Handle a canvas click event
@@ -64,7 +68,7 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
-    c = {x: x, y: y, radius: 30, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
+    c = {x: x, y: y, radius: 0, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
     reactions.push(c);
   });
 
