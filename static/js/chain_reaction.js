@@ -6,6 +6,7 @@ $(document).ready(function() {
   var height = canvas.height;
 
   // PUT STUFF HERE
+  var reactions = [];
 
   var numBalls = 3;
 
@@ -46,6 +47,14 @@ $(document).ready(function() {
       context.stroke();
       context.fill();
     }
+    for (var c = 0; c < reactions.length; c++) {
+      context.beginPath();
+      context.fillStyle='red';
+      context.arc (reactions[c].x, reactions[c].y, reactions[c].radius,0,2*Math.PI);
+      context.closePath();
+      context.stroke();
+      context.fill();
+    }
     requestAnimationFrame(updateGame);
   };
 
@@ -55,8 +64,8 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
-    c = {x: x, y: y, radius: 50*Math.random(), vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
-    balls.push(c);
+    c = {x: x, y: y, radius: 30, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
+    reactions.push(c);
   });
 
   updateGame();
