@@ -50,6 +50,15 @@ app.get('/chain_reaction', function(req, res) {
 	res.render('chain_reaction.html', { });
 });
 
+app.get('/fact', function(req, res) {
+  var templateData = {
+    name: 'Avani',
+    number: '9',
+    food: 'pizza'
+  };
+	res.render('fact.html', templateData);
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
