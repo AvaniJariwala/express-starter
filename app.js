@@ -13,6 +13,9 @@ app.use('/static', express.static(__dirname + '/static'));
 //use ejs for html templates
 app.engine('html', ejs.renderFile);
 
+var array = ['green is my favorite color', 'giraffes are very tall', 'goat cheese is gross', 'uc berkeley is the best'];
+var blah = array[Math.floor(Math.random()*3)];
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // APP ROUTES                                                                //
@@ -53,8 +56,8 @@ app.get('/chain_reaction', function(req, res) {
 app.get('/fact', function(req, res) {
   var templateData = {
     name: 'Avani',
-    number: '9',
-    food: 'pizza'
+    adjective: 'cool',
+    fact: blah
   };
 	res.render('fact.html', templateData);
 });
