@@ -62,6 +62,13 @@ app.get('/fact', function(req, res) {
 	res.render('fact.html', templateData);
 });
 
+app.get('/facts', function(req, res) {
+  var templateData1 = {
+    facts: ['pasta is a carb', 'tomatoes are vegetables', 'avacados are the best']
+  };
+  res.render('facts.html', templateData1);
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////

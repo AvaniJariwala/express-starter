@@ -1,8 +1,14 @@
 <html>
   <body>
+  	<h1> ~MASTER LIST OF FACTS~ </h1>
     <!-- insert your templating code here
         hint: check out http://embeddedjs.com/ to see examples of templates
         using for loops -->
-
+	<%
+  	for (var i = 0; i < facts.length; i++) {
+  		%> <br>
+      FACT: <%= facts[i] %>.<%
+  	};
+  	%>
   </body>
 </html>
