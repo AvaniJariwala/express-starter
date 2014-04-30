@@ -15,6 +15,7 @@ app.engine('html', ejs.renderFile);
 
 var array = ['green is my favorite color', 'giraffes are very tall', 'goat cheese is gross', 'uc berkeley is the best'];
 var blah = array[Math.floor(Math.random()*3)];
+var facts = ['pasta is a carb', 'tomatoes are vegetables', 'avacados are the best'];
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -64,9 +65,15 @@ app.get('/fact', function(req, res) {
 
 app.get('/facts', function(req, res) {
   var templateData1 = {
-    facts: ['pasta is a carb', 'tomatoes are vegetables', 'avacados are the best']
+    facts: facts
   };
   res.render('facts.html', templateData1);
+});
+
+app.get('/submit_fact', function(req, res) {
+  var newFact = req.query['fact'];
+  facts.push(newFact);
+  res.redirect('/facts');
 });
 
 ///////////////////////////////////////////////////////////////////////////////
