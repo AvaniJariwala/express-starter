@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
       }
           if (collided === true) {
-          var new_reaction = {x: balls[i].x, y: balls[i].y, radius: 1}
+          var new_reaction = {x: balls[i].x, y: balls[i].y, radius: 1, timer: 0}
           reactions.push(new_reaction);
           balls.splice(i,1);
           if (i > 0) {
@@ -78,7 +78,16 @@ $(document).ready(function() {
     requestAnimationFrame(updateGame);
     for (var i = 0; i < reactions.length; i++) {
       if (reactions[i].radius < 30) {
-        reactions[i].radius++;
+        reactions[i].timer = reactions[i].timer + 1;
+        reactions[i].radius = reactions[i].radius + 1;
+      }
+      else if (reactions[i].timer < 200) {
+        reactions[i].radius = reactions[i].radius - 1;
+      }
+      if (reactions[i].radius === 0) {
+        reactions.splice(i,1);
+          if (i > 0) {
+            i--;}
       }
     }
   };
@@ -89,9 +98,13 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
-    c = {x: x, y: y, radius: 0, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
+    c = {x: x, y: y, radius: 0, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5, timer: 0};
     reactions.push(c);
   });
+
+  for (i = 0; i < reactions.length; i++) {
+    reactions[i].timer = reactions[i].timer + 1;
+  }
 
   updateGame();
 });

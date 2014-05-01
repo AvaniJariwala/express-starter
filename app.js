@@ -2,6 +2,8 @@ var express = require("express");
 var ejs = require("ejs");
 var app = express();
 
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('facts.db');
 
 ///////////////////////////////////////////////////////////////////////////////
 // APP CONFIGURATION                                                         //
@@ -55,12 +57,16 @@ app.get('/chain_reaction', function(req, res) {
 });
 
 app.get('/fact', function(req, res) {
+  db.get('SELECT * FROM fact_table ORDER BY RANDOM()', function(err, item) {
   var templateData = {
     name: 'Avani',
     adjective: 'cool',
-    fact: blah
+    fact: item.fact_str
   };
-	res.render('fact.html', templateData);
+  res.render('fact.html', templateData);
+  // render page here
+  });
+  
 });
 
 app.get('/facts', function(req, res) {
@@ -75,6 +81,7 @@ app.get('/submit_fact', function(req, res) {
   facts.push(newFact);
   res.redirect('/facts');
 });
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
