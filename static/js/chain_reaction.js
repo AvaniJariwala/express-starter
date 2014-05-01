@@ -6,41 +6,66 @@ $(document).ready(function() {
   var height = canvas.height;
 
   // PUT STUFF HERE
-  var reactions = [];
 
-  var numBalls = 3;
+  var numBalls = 5;
 
   var balls = [];
+
+  var reactions = [];
+
+  var reacting = false;
+
+  var numReacted = 0;
+
+  var gamestate = "menu";
+
+  var menuText = "Click to play!";
+
+  var curLevel = 0;
+
+ // var levels = [{num = 1, minReactions = 1, numBalls = 5},{num = 2, minReactions = 3, numBalls = 6}, 
+ //{num = 3, minReactions = 4, numBalls = 8}, {num = 4, minReactions = 5, numBalls = 9}, {num = 5, minReactions = 7, numBalls = 10},
+ // {num = 6, minReactions = 8, numBalls = 12}, {num = 7, minReactions = 9, numBalls = 15}, {num = 8, minReactions = 11, numBalls = 17},
+ // {num = 9, minReactions = 13, numBalls = 20}];
   
-  for (var i = 0; i <= numBalls; i++) {
-    a = {x: width*Math.random(), y: height*Math.random(), radius: 50*Math.random(), vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
+  for (var i = 0; i < numBalls; i++) {
+    a = {x: width*Math.random(), y: height*Math.random(), radius: 20, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
     balls.push(a);
   }
 
   // Run an interation of the game
   var updateGame = function() {
-    
+
+    if (gamestate === "menu") {
+    context.fillStyle = "pink";
+    context.font = "50px Arial"
+    context.fillText( menuText, 20, 300);
+  }
+    else if ( gamestate === "playing") {
     for (var i = 0; i < balls.length; i++) {
-      var collided = false;
+      var collided = false
         for (var j = 0; j < reactions.length; j++) {
-          var xdiff = balls[i].x - reactions[j].x;
-          var ydiff = balls[i].y - reactions[j].y;
-          var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);
-          if (dist < balls[i].radius + reactions[j].radius) {
+          var xdiff = balls[i].x-reactions[j].x;
+          var ydiff = balls[i].y-reactions[j].y;
+          var dist =  Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+          if (dist < balls[i].radius + reactions[j].radius){
           collided = true;
         }
       }
           if (collided === true) {
-          var new_reaction = {x: balls[i].x, y: balls[i].y, radius: 1, timer: 0}
+          var new_reaction={x: balls[i].x, y: balls[i].y, radius: 1, timer: 0};
           reactions.push(new_reaction);
           balls.splice(i,1);
-          if (i > 0) {
+          numReacted++;
+          if (i>0) {
             i--;}
         }
-    }
+                
 
+      
+      }
 
-    context.fillStyle='pink';
+    context.fillStyle='black';
     context.fillRect(0, 0, 800, 800);
 
     for (var i = 0; i < balls.length; i++) {
@@ -59,9 +84,10 @@ $(document).ready(function() {
         balls[i].vy = 5;
       }
     }
+
     for (var c = 0; c < balls.length; c++) {
       context.beginPath();
-      context.fillStyle='red';
+      context.fillStyle='green';
       context.arc(balls[c].x, balls[c].y, balls[c].radius,0,2*Math.PI);
       context.closePath();
       context.stroke();
@@ -69,42 +95,61 @@ $(document).ready(function() {
     }
     for (var c = 0; c < reactions.length; c++) {
       context.beginPath();
-      context.fillStyle='red';
+      context.fillStyle='blue';
       context.arc (reactions[c].x, reactions[c].y, reactions[c].radius,0,2*Math.PI);
       context.closePath();
       context.stroke();
       context.fill();
     }
-    requestAnimationFrame(updateGame);
-    for (var i = 0; i < reactions.length; i++) {
-      if (reactions[i].radius < 30) {
-        reactions[i].timer = reactions[i].timer + 1;
-        reactions[i].radius = reactions[i].radius + 1;
+    if (reacting === true) {
+      if (reactions.length === 0) {
+        menuText = ("Game over! you reacted " + numReacted + " balls!")
+        gamestate = "menu"
+    }}
+    }
+    requestAnimationFrame(updateGame); 
+    for(var i=0; i < reactions.length; i++) {
+      reactions[i].timer++;
+      if (reactions[i].timer > 200) {
+          reactions[i].radius--;
       }
-      else if (reactions[i].timer < 200) {
-        reactions[i].radius = reactions[i].radius - 1;
+      else if (reactions[i].radius < 30) {
+         reactions[i].radius++;
       }
       if (reactions[i].radius === 0) {
-        reactions.splice(i,1);
-          if (i > 0) {
-            i--;}
+          reactions.splice(i,1);
+          i--;
       }
     }
+    context.fillStyle = "red";
+    context.font = "20px Helvetica"
+    context.fillText("Reactions:" + numReacted, 10, 30);
+
   };
 
   // Handle a canvas click event
   $('#game_canvas').click(function(e) {
-    // Find the mouse x and y relative to the top-left corner of the canvas
-    var x = e.pageX - $(this).offset().left;
-    var y = e.pageY - $(this).offset().top;
-    // PUT STUFF HERE
-    c = {x: x, y: y, radius: 0, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5, timer: 0};
-    reactions.push(c);
-  });
+    if (gamestate === "menu") {
+      reacting = false
+      numReacted = 0
+      for (var i = 0; i < numBalls; i++) {
+        a = {x: width*Math.random(), y: height*Math.random(), radius: 20, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5};
+        balls.push(a);
+        }      
+      gamestate = "playing";}
 
-  for (i = 0; i < reactions.length; i++) {
-    reactions[i].timer = reactions[i].timer + 1;
-  }
+    else if (gamestate === "playing") {
+    if (reacting === false) {
+      reacting = true
+    // Find the mouse x and y relative to the top-left corner of the canvas
+      var x = e.pageX - $(this).offset().left;
+      var y = e.pageY - $(this).offset().top;
+    
+      z = {x: x, y: y, radius: 0, vx: 2.5*Math.random()+2.5, vy: 2.5*Math.random()+2.5, timer: 0};
+      reactions.push(z);
+
+  }}
+  });
 
   updateGame();
 });
