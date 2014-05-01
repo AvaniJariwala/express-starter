@@ -78,8 +78,9 @@ app.get('/facts', function(req, res) {
 
 app.get('/submit_fact', function(req, res) {
   var newFact = req.query['fact'];
+  db.run('INSERT INTO fact_table VALUES ("' + newFact + '")');
   facts.push(newFact);
-  res.redirect('/facts');
+  res.redirect('/fact');
 });
 
 
