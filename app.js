@@ -5,6 +5,7 @@ var app = express();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('facts.db');
 
+var finalArray = [];
 ///////////////////////////////////////////////////////////////////////////////
 // APP CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
@@ -70,10 +71,16 @@ app.get('/fact', function(req, res) {
 });
 
 app.get('/facts', function(req, res) {
-  var templateData1 = {
-    facts: facts
+  db.all('SELECT * FROM fact_table', function(err, items) {
+  for (i=0; i < items.length; i++) {
+    finalArray.push(items[i].fact_str);
   };
-  res.render('facts.html', templateData1);
+  var Fin = {
+    facts: finalArray
+  };
+  res.render('facts.html', Fin);
+  // render page here
+  });
 });
 
 app.get('/submit_fact', function(req, res) {
